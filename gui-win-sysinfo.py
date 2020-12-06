@@ -5,6 +5,8 @@ from getpass import getuser
 from platform import uname
 from time import time
 from datetime import datetime
+from subprocess import Popen
+
 def get_size(bytesize, suffix="B"):
     #Scale bytes to its proper format
     factor = 1024
@@ -17,9 +19,9 @@ win = tk.Tk()
 win.geometry('725x600')
 win.configure(bg='#0f0f0f')
 win.title('System info')
-win.iconbitmap('C:/Users/ryan.satur/Downloads/pc.ico')
+win.iconbitmap(r'C:\Users\ryan.satur\Downloads\pc.ico')
 
-tk.Label(win, text = 'System Info', fg = 'white', bg='#0f0f0f').pack()
+tk.Label(win, text = 'System Info\n', fg = 'white', bg='#0f0f0f').pack()
 
 start = time()
 raminfo = ps.virtual_memory()
@@ -41,9 +43,19 @@ tk.Label(win, text = f'IPv4 address: {socket.gethostbyname(socket.gethostname())
 tk.Label(win, text = f'OS: {uname().system}', fg = 'white', bg='#0f0f0f').pack()
 tk.Label(win, text = f'OS version: {uname().version}', fg = 'white', bg='#0f0f0f').pack()
 tk.Label(win, text = f'Total RAM: {get_size(raminfo.total)}', fg = 'white', bg='#0f0f0f').pack()
-tk.Label(win, text = f'Used RAM: {get_size(raminfo.used)}', fg='white', bg='#0f0f0f').pack()
+tk.Label(win, text = f'Used RAM: {get_size(raminfo.used)}\n', fg='white', bg='#0f0f0f').pack()
 end = time()
 
-tk.Label(win, text = f'\nRetrieved system info in {end - start} sec', fg = 'white', bg='#0f0f0f').pack()
+del raminfo
+
+tk.Label(win, text = f'\nRetrieved system info in {end - start} sec\n', fg = 'white', bg='#0f0f0f').pack()
+
+del start, end
+
+def openSourceCode():
+    Popen(["notepad.exe", __file__])
+
+tk.Button(win, text = f'Open source code', command=openSourceCode).pack()
+del openSourceCode
 
 win.mainloop()
