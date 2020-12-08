@@ -19,7 +19,7 @@ win = tk.Tk()
 win.geometry('725x600')
 win.configure(bg='#0f0f0f')
 win.title('System info')
-win.iconbitmap(r'C:\Users\ryan.satur\Downloads\pc.ico')
+win.iconbitmap('pc.ico')
 
 tk.Label(win, text = 'System Info\n', fg = 'white', bg='#0f0f0f').pack()
 
