@@ -55,7 +55,7 @@ del start, end
 def openSourceCode():
     Popen(["notepad.exe", __file__])
 
-tk.Button(win, text = f'Open source code', command=openSourceCode).pack()
+tk.Button(win, text = 'Open source code', command=openSourceCode).pack()
 del openSourceCode
 
 win.mainloop()
